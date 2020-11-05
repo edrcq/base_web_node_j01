@@ -1,15 +1,6 @@
 const Router = require('express').Router
 const router = Router()
-
-
-const store = {
-    resources: {
-        'ceciestunid': {
-            id: 'ceciestunid', name: 'Ceci est une resource', option: {}
-        },
-        'id2': {}
-    }
-}
+const store = require('./store')
 
 /*
 get /api/resources/res_id -> renvoi la resource store.resources['res_id']
