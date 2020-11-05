@@ -33,47 +33,42 @@ const { params: { id }} = req
 // Recuperer une ressource avec son id
 router.get('/resources/:id', (req, res) => {
     const id = req.params.id 
-    res.json(store.resources[id])
+    res.json(store.resources.getById(id))
 })
 
 // Creer une nouvelle ressource
 router.post('/resources', (req, res) => {
-    const resource = req.body
     // on genere un id grace a la longueur du tableau des keys se trouvant dans notre objets
-    resource.id = Object.keys(store.resources).length + 1 // ['res_id'] -> 1
-    store.resources[resource.id] = resource
+    // resource.id = Object.keys(store.resources).length + 1 // ['res_id'] -> 1
+    const resource = store.resources.add(req.body)
     res.json(resource)
 })
 
 // remplacer une ressource
 router.put('/resources/:id', (req, res) => {
     const id = req.params.id
-    if (req.params.id === req.body.id) {
-        store.resources[id] = req.body
-        res.json(req.body)
-    }
-    else
-        res.status(400).end()
+    if (id !== req.body.id)
+        return res.status(400).end()
+    const tryReplace = store.resources.replace(id, req.body)
+    if (!tryReplace)
+        res.status(404).end()
+    res.json(tryReplace)
 })
 
 // patch une ressource
 router.patch('/resources/:id', (req, res) => {
     const id = req.params.id
-    const resource = { ...store.resources[id], ...req.body }
-    store.resources[id] = resource
+    const resource = store.resources.patch(id, req.body)
     res.json(resource)
 })
 
 // supprimer
 router.delete('/resources/:id', (req, res) => {
     const { id } = req.params
-    if (store.resources[id]) {
-        delete store.resources[id]
-        res.json({ success: true })
-    }
-    else
-        res.status(404).end()
-    
+    const tryDelete = store.resources.delete(id)
+    if (!tryDelete)
+        return res.status(404).end()
+    res.json({ success: tryDelete })
 })
 
 module.exports = router
