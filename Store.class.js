@@ -37,6 +37,12 @@ class Store {
         return this.content[id]
     }
 
+    getBy(keyName, value) {
+        const contentArray = Object.values(this.content)
+        const resource = contentArray.find((el) => el[keyName] === value)
+        return resource
+    }
+
     add(resource) {
         const id = uuidv4()
         resource.id = id

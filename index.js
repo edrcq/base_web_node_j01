@@ -3,7 +3,7 @@ const servHttp = require('./server_http')
 // end test
 const express = require('express')
 const middlewares = require('./middlewares')
-const defaultRouter = require('./routes')
+const controllers = require('./controllers')
 
 const app = express()
 
@@ -22,8 +22,9 @@ app.post('/', (req, res) => {
     res.json({ success: true })
 })
 
-app.use('/api', defaultRouter)
-
+app.use('/api', controllers.resources)
+app.use('/game', controllers.game)
+app.use('/auth', controllers.auth)
 
 
 app.listen(4021, () => {

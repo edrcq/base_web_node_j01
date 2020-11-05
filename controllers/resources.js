@@ -1,6 +1,6 @@
 const Router = require('express').Router
 const router = Router()
-const store = require('./store')
+const store = require('../store')
 
 /*
 get /api/resources/res_id -> renvoi la resource store.resources['res_id']
