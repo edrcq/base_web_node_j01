@@ -1,5 +1,6 @@
 const crypto = require('crypto')
 const store = require('../store')
+const event_manager = require('../events')
 
 function hashPassword(password) {
     const hash = crypto.createHash('sha256')
@@ -15,6 +16,10 @@ function postRegister(req, res) {
         pseudo,
         password: hashedPassword
     })
+
+    // emit event - new user, user
+    event_manager.emit('new_user', user)
+
     res.json(user)
 }
 
