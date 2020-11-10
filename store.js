@@ -1,5 +1,5 @@
 const path = require('path')
-const { Store } = require('./Store.class')
+const { Store } = require('./src/Store.class')
 
 const str_resources_filePath = path.resolve(__dirname, 'data', 'resources.json')
 const str_users_filePath = path.resolve(__dirname, 'data', 'users.json')

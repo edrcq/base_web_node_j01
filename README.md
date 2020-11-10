@@ -1,5 +1,6 @@
 # Exercices
 
+## attention .env requis
 
 ## Exercice 00
 

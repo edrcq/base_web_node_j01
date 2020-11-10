@@ -27,8 +27,8 @@ class Store {
         // this.path = options.path || undefined
         // 
 
-        this.autoLoad()
-        this.autoSave()
+        // this.autoLoad()
+        // this.autoSave()
 
 
     }
