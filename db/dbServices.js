@@ -13,7 +13,7 @@ function initServices(client, dbName) {
 
     return {
         createSomething: generateCreateFunc(somethings),
-        createProduct: generateCreateFunc(products)
+        createProduct: generateCreateFunc(products),
     }
 }
 

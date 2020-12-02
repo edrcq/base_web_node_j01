@@ -15,4 +15,9 @@ router.post('/auth/register', controllers.auth.postRegister)
 router.post('/auth/login', controllers.auth.postLogin)
 router.get('/auth/me', checkAuth, reqAuth, controllers.auth.getMe)
 
+/* Modules Routing */
+const wmControllers = require('./modules/game/world-manager/wm.controller')
+/* Game */
+router.post('/game/world/create', wmControllers.PostCreateWorld)
+
 module.exports = router
